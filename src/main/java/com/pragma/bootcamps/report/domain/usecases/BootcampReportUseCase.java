@@ -4,7 +4,10 @@ import com.pragma.bootcamps.report.domain.api.BootcampReportServicePort;
 import com.pragma.bootcamps.report.domain.clients.CapabilityClientPort;
 import com.pragma.bootcamps.report.domain.clients.PersonClientPort;
 import com.pragma.bootcamps.report.domain.clients.TechnologyClientPort;
+import com.pragma.bootcamps.report.domain.enums.ExceptionMessages;
+import com.pragma.bootcamps.report.domain.exceptions.NotFoundException;
 import com.pragma.bootcamps.report.domain.models.BootcampCreated;
+import com.pragma.bootcamps.report.domain.models.BootcampReport;
 import com.pragma.bootcamps.report.domain.spi.BootcampReportPersistencePort;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
@@ -36,6 +39,11 @@ public class BootcampReportUseCase implements BootcampReportServicePort {
         return personClientPort.getPersonById(personId)
                 .flatMap(student -> bootcampReportPersistencePort.addStudentToReport(bootcampId, student))
                 .then();
+    }
+
+    public Mono<BootcampReport> getMostSuccessfulBootcamp() {
+        return bootcampReportPersistencePort.findMostEnrolledBootcamp()
+                .switchIfEmpty(Mono.error(new NotFoundException(ExceptionMessages.BOOTCAMP_NOT_FOUND.getMessage())));
     }
 
 

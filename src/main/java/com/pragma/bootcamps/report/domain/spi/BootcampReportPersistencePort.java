@@ -8,5 +8,6 @@ public interface BootcampReportPersistencePort {
 
     Mono<BootcampReport> save(BootcampReport bootcampReport);
     Mono<Void> addStudentToReport(Long bootcampId, StudentReport student);
+    Mono<BootcampReport> findMostEnrolledBootcamp();
 
 }
