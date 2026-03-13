@@ -1,6 +1,11 @@
 spring:
   application:
     name: report
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: bootcamp
+    password: "1234"
   data:
     mongodb:
       uri: mongodb://usuario:password@localhost:27017/mi_base
@@ -16,3 +21,7 @@ adapter:
       person:
         base-url: "http://localhost:8083/api/v1"
 
+queue:
+  rabbitmq:
+    name-created-queue: "report.create.bootcamp"
+    name-enrollment-queue: "report.enrollment.bootcamp"
