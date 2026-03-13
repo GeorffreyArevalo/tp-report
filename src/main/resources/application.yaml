@@ -20,6 +20,16 @@ spring:
 server:
   port: 8084
 
+springdoc:
+  swagger-ui:
+    path: "/api/doc/report/swagger-ui.html"
+  api-docs:
+    path: "/api/doc/report/api-docs"
+
+routes:
+  paths:
+    bootcamp-top-enrolled: /api/v1/bootcamp-reports/top-enrolled
+
 adapter:
   clients:
     timeout: 5000
