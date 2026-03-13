@@ -1,7 +1,6 @@
 package com.pragma.bootcamps.report.infrastructure.entrypoints.queuelistener.listeners;
 
 import com.pragma.bootcamps.report.domain.api.BootcampReportServicePort;
-import com.pragma.bootcamps.report.infrastructure.entrypoints.queuelistener.dtos.BootcampCreatedDto;
 import com.pragma.bootcamps.report.infrastructure.entrypoints.queuelistener.dtos.PersonEnrollDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

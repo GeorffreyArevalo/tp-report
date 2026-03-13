@@ -8,7 +8,7 @@ spring:
     password: "1234"
   data:
     mongodb:
-      uri: mongodb://usuario:password@localhost:27017/mi_base
+      uri: mongodb://report:1234@localhost:27017/report
 
 adapter:
   clients:

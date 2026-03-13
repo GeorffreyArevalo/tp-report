@@ -1,0 +1,16 @@
+services:
+
+  db:
+    image: mongo:8.0
+    container_name: db-report
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo_volume:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: report
+      MONGO_INITDB_ROOT_PASSWORD: 1234
+
+volumes:
+  mongo_volume:
+    external: false
