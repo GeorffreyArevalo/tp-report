@@ -3,7 +3,6 @@ package com.pragma.bootcamps.report.infrastructure.adapters.persistence.mongodb.
 import com.pragma.bootcamps.report.domain.models.BootcampReport;
 import com.pragma.bootcamps.report.infrastructure.adapters.persistence.mongodb.documents.BootcampReportDocument;
 import org.mapstruct.Mapper;
-import org.mapstruct.ReportingPolicy;
 
 @Mapper(
         componentModel = "spring"
@@ -11,7 +10,6 @@ import org.mapstruct.ReportingPolicy;
 public interface BootcampReportDocumentMapper {
 
     BootcampReportDocument toDocument(BootcampReport bootcampReport);
-
     BootcampReport toDomain(BootcampReportDocument document);
 
 }
