@@ -8,6 +8,7 @@ import com.pragma.bootcamps.report.infrastructure.adapters.persistence.mongodb.m
 import com.pragma.bootcamps.report.infrastructure.adapters.persistence.mongodb.repositories.BootcampReportReactiveRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -44,5 +45,15 @@ public class BootcampReportPersistenceAdapter implements BootcampReportPersisten
 
         return mongoTemplate.updateFirst(query, update, BootcampReportDocument.class)
                 .then();
+    }
+
+    @Override
+    public Mono<BootcampReport> findMostEnrolledBootcamp() {
+        var query = new Query()
+                .with(Sort.by(Sort.Direction.DESC, "enrolledStudentCount"))
+                .limit(1);
+
+        return mongoTemplate.findOne(query, BootcampReportDocument.class)
+                .map(mapper::toDomain);
     }
 }
