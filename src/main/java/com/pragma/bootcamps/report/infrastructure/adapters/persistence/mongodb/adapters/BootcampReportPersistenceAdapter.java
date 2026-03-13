@@ -7,6 +7,7 @@ import com.pragma.bootcamps.report.infrastructure.adapters.persistence.mongodb.d
 import com.pragma.bootcamps.report.infrastructure.adapters.persistence.mongodb.mappers.BootcampReportDocumentMapper;
 import com.pragma.bootcamps.report.infrastructure.adapters.persistence.mongodb.repositories.BootcampReportReactiveRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -14,6 +15,7 @@ import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class BootcampReportPersistenceAdapter implements BootcampReportPersistencePort {
@@ -26,6 +28,7 @@ public class BootcampReportPersistenceAdapter implements BootcampReportPersisten
     public Mono<BootcampReport> save(BootcampReport bootcampReport) {
         return Mono.just(bootcampReport)
                 .map(mapper::toDocument)
+                .doOnNext( document -> log.info("Saving Document: {}", document) )
                 .flatMap(bootcampReportReactiveRepository::save)
                 .map(mapper::toDomain);
     }

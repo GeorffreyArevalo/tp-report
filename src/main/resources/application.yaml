@@ -15,7 +15,7 @@ spring:
         message-converter: jackson
   data:
     mongodb:
-      uri: "mongodb://root:1234@localhost:27017/report?authSource=admin"
+      uri: "mongodb://reto:1234@localhost:27017/report?authSource=admin"
 
 server:
   port: 8084

@@ -6,7 +6,9 @@ import org.springframework.boot.mongodb.autoconfigure.MongoProperties;
 import org.springframework.boot.mongodb.autoconfigure.PropertiesMongoConnectionDetails;
 import org.springframework.boot.ssl.SslBundles;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
+@Configuration
 public class MongoConfig {
 
     @Bean

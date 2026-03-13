@@ -6,13 +6,12 @@ import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 
 @Mapper(
-        componentModel = "spring",
-        unmappedTargetPolicy = ReportingPolicy.IGNORE,
-        unmappedSourcePolicy = ReportingPolicy.IGNORE
+        componentModel = "spring"
 )
 public interface BootcampReportDocumentMapper {
 
     BootcampReportDocument toDocument(BootcampReport bootcampReport);
+
     BootcampReport toDomain(BootcampReportDocument document);
 
 }
