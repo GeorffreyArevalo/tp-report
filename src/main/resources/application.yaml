@@ -1,6 +1,9 @@
 spring:
   application:
     name: report
+  data:
+    mongodb:
+      uri: mongodb://usuario:password@localhost:27017/mi_base
 
 adapter:
   clients:
