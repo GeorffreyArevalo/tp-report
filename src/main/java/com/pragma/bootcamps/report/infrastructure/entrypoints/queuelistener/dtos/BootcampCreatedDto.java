@@ -3,12 +3,14 @@ package com.pragma.bootcamps.report.infrastructure.entrypoints.queuelistener.dto
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class BootcampCreatedDto {
+public class BootcampCreatedDto implements Serializable {
     private Long bootcampId;
     private String name;
     private String description;

@@ -6,6 +6,7 @@ import com.pragma.bootcamps.report.domain.exceptions.CapabilityMicroserviceExcep
 import com.pragma.bootcamps.report.domain.models.CapabilityReport;
 import com.pragma.bootcamps.report.infrastructure.adapters.webclient.dtos.responses.CapabilityListResponse;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,7 @@ import reactor.core.publisher.Mono;
 
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class CapabilityMicroserviceClientAdapter implements CapabilityClientPort {
@@ -28,6 +30,7 @@ public class CapabilityMicroserviceClientAdapter implements CapabilityClientPort
 
     @Override
     public Flux<CapabilityReport> getCapabilitiesByBootcampId(Long bootcampId) {
+        log.info("Codigo bootcampId: {}", bootcampId);
         return client.get()
                 .uri(String.format("%s%s", capabilityMicroserviceBaseUrl, GET_CAPABILITIES_URL), bootcampId)
                 .retrieve()

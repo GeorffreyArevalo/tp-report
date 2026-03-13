@@ -8,8 +8,9 @@ services:
     volumes:
       - mongo_volume:/data/db
     environment:
-      MONGO_INITDB_ROOT_USERNAME: report
+      MONGO_INITDB_ROOT_USERNAME: reto
       MONGO_INITDB_ROOT_PASSWORD: 1234
+      MONGO_INITDB_DATABASE: report
 
 volumes:
   mongo_volume:

@@ -1,14 +1,24 @@
 spring:
   application:
     name: report
+  amqp:
+    deserialization:
+      trust:
+        all: "true"
   rabbitmq:
     host: localhost
     port: 5672
     username: bootcamp
     password: "1234"
+    listener:
+      simple:
+        message-converter: jackson
   data:
     mongodb:
-      uri: mongodb://report:1234@localhost:27017/report
+      uri: "mongodb://root:1234@localhost:27017/report?authSource=admin"
+
+server:
+  port: 8084
 
 adapter:
   clients:

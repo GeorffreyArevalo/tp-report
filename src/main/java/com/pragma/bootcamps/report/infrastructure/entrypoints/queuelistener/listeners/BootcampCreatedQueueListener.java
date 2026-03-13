@@ -23,11 +23,12 @@ public class BootcampCreatedQueueListener {
     public Mono<Void> receive(@Payload BootcampCreatedDto data) {
 
         return Mono.just(data)
+                .doOnNext(bootcampCreated -> log.info("Received QUEUE message: {}", bootcampCreated))
                 .map(mapper::toModel)
                 .doOnNext(bootcampCreated -> log.info("Processing BootcampId={} with name={}", bootcampCreated.getBootcampId(), bootcampCreated.getName()))
                 .flatMap(bootcampReportServicePort::handleBootcampCreation)
-                .doOnSuccess(unused -> log.info("Successfully processed SQS message: {}", data))
-                .doOnError(error -> log.error("Error processing SQS message: {}", data, error))
+                .doOnSuccess(unused -> log.info("Successfully processed QUEUE message: {}", data))
+                .doOnError(error -> log.error("Error processing QUEUE message: {}", data, error))
                 .then();
 
     }
